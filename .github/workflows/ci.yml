@@ -19,6 +19,8 @@ jobs:
             otp: "27"
           - elixir: "1.18"
             otp: "27"
+          - elixir: "1.18"
+            otp: "28"
     env:
       MIX_ENV: test
     steps:
@@ -68,6 +70,9 @@ jobs:
 
       - name: Run Formatter
         run: mix format --check-formatted
+
+      - name: Check for unused dependencies
+        run: mix deps.unlock --check-unused
 
       - name: Run Credo
         run: mix credo
